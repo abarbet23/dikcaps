@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>
+			{% block title %}Dikcaps -
+			{% endblock %}
+		</title>
+		{% block stylesheets %}
+			<link href="https://bootswatch.com/5/journal/bootstrap.min.css" rel="stylesheet">
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+			<link rel="shortcut icon" href="{{asset('img/condom.png')}}"/>
+			<script src="script/script.js"></script>
+			<link rel="stylesheet" href="{{asset("css/style.css")}}">
+			<link rel="stylesheet" href="{{asset("css/produit.css")}}">
+		{% endblock %}
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+			<div class="container-fluid" bis_skin_checked="1">
+				<a href="{{path('app_base')}}">
+					<img src="{{asset('img/condom.gif')}}" width="40px">
+				</a>
+				<a class="navbar-brand" href="{{path('app_base')}}">
+					Dikcaps</a>
+				<div class="collapse navbar-collapse" id="navbarColor02" bis_skin_checked="1">
+					<ul class="navbar-nav me-auto">
+						<li class="nav-item">
+							<a class="nav-link" href="{{path('app_produit')}}">Nos produit</a>
+						</li>
+					</ul>
+
+					<ul class="navbar-nav">
+						{% if not is_granted ('IS_AUTHENTICATED_FULLY') %}
+							<li class="nav-item">
+								<a class="nav-link" href="{{path('app_login')}}">Se connecter
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{{path('app_register')}}">S'inscrire
+								</a>
+							</li>
+						{% else %}
+							<li>
+								<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Panier
+									<i class="bi bi-cart-fill"></i>
+								</button>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{{path('app_logout')}}">
+									{{app.user.email}}
+									<i class="bi bi-x-circle-fill"></i>
+								</a>
+							</li>
+						{% endif %}
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<!-- message bouton panier -->
+		<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+			<div class="offcanvas-header">
+				<h5 class="offcanvas-title" id="offcanvasRightLabel">
+					<i class="bi bi-cart-fill"></i>Panier
+					<i class="bi bi-cart-fill"></i>
+				</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+			</div>
+			<div class="offcanvas-body">
+				Ici serront ranger les panier
+			</div>
+		</div>
+		{% block body %}{% endblock %}
+		{% block javascripts %}
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+		{% endblock %}
+	</body>
+
+
+</html>
