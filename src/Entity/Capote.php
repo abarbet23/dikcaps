@@ -25,6 +25,9 @@ class Capote
     #[ORM\OneToMany(targetEntity: Associer::class, mappedBy: 'capote')]
     private Collection $associers;
 
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
+
     public function __construct()
     {
         $this->associers = new ArrayCollection();
@@ -85,6 +88,18 @@ class Capote
                 $associer->setCapote(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): static
+    {
+        $this->image = $image;
 
         return $this;
     }

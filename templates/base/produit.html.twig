@@ -5,14 +5,16 @@
 {% block body %}
 
 	<div class="row row-cols-1 row-cols-md-4 g-4 ">
+	{% for capote in capotes %}
 		<div class="col">
 			<div class="card">
 				<div class="card-body">
 					<figure class="snip1487">
-						<img src="{{asset('img/yoda.png')}}" alt="yoda"/>
+					{% set chemin='img/' ~capote.image %}
+						<img src="{{asset(chemin)}}" alt="hp"/>
 						<figcaption>
-							<h3>Baguette Magique</h3>
-							<p>Avec cette baguette magique, vous êtes digne du célèbre Harry Plotteur.</p>
+							<h3>{{capote.nom}}</h3>
+							<p>{{capote.description}}</p>
 						</figcaption>
 						<i class="bi bi-cart"></i>
 						<a href="#" title="Ajoutez au panier ! "></a>
@@ -23,140 +25,19 @@
 						Tailles
 					</button>
 					<ul class="dropdown-menu dropdown-menu-end" style="">
+					{% for t in tailles %}
 						<li>
-							<a class="dropdown-item" href="#">XS</a>
+							<a class="dropdown-item" href="#">{{t.libelle}}</a>
 						</li>
-						<li>
-							<a class="dropdown-item" href="#">S</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="#">M</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="#">L</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="#">XL</a>
-						</li>
+					{% endfor %}	
 					</ul>
 				</div>
 			</div>
 		</div>
-
-		<div class="col">
-			<div class="card">
-				<div class="card-body">
-					<figure class="snip1487">
-						<img src="{{asset('img/jc.png')}}" alt="jc"/>
-						<figcaption>
-							<h3>Jean Claude duss</h3>
-							<p>Avec ça vous êtes sûr de conclure.</p>
-						</figcaption>
-						<i class="bi bi-cart"></i>
-						<a href="#" title="Ajoutez au panier ! "></a>
-					</figure>
-				</div>
-				<div class="btn-group">
-					<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-						Tailles
-					</button>
-					<ul class="dropdown-menu dropdown-menu-end" style="">
-						<li>
-							<a class="dropdown-item" href="#">XS</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="#">S</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="#">M</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="#">L</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="#">XL</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-
-		<div class="col">
-			<div class="card">
-				<div class="card-body">
-					<figure class="snip1487">
-						<img src="{{asset('img/demon.png')}}" alt="demon"/>
-						<figcaption>
-							<h3>Le diable</h3>
-							<p>On dit souvent que le diable est rouge. Mais se soir le diable est rose.</p>
-						</figcaption>
-						<i class="bi bi-cart"></i>
-						<a href="#" title="Ajoutez au panier ! "></a>
-					</figure>
-				</div>
-				<div class="btn-group">
-					<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-						Tailles
-					</button>
-					<ul class="dropdown-menu dropdown-menu-end" style="">
-						<li>
-							<a class="dropdown-item" href="#">XS</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="#">S</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="#">M</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="#">L</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="#">XL</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-
-		<div class="col">
-			<div class="card">
-				<div class="card-body">
-					<figure class="snip1487">
-						<img src="{{asset('img/castor.png')}}" alt="castor"/>
-						<figcaption>
-							<h3>Le castor</h3>
-							<p>Même les castor si mettent.</p>
-						</figcaption>
-						<i class="bi bi-cart"></i>
-						<a href="#" title="Ajoutez au panier ! "></a>
-					</figure>
-				</div>
-				<div class="btn-group">
-					<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-						Tailles
-					</button>
-					<ul class="dropdown-menu dropdown-menu-end" style="">
-						<li>
-							<a class="dropdown-item" href="#">XS</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="#">S</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="#">M</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="#">L</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="#">XL</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
+	{% endfor %}
 	</div>
+
+{#	
 
 	<br>
 
@@ -435,6 +316,14 @@
 			<div class="card">
 				<div class="card-body">
 					<figure class="snip1487">
+
+
+
+
+
+
+
+					
 						<img src="{{asset('img/sio.png')}}" alt="castor"/>
 						<figcaption>
 							<h3>La SIO</h3>
@@ -469,5 +358,7 @@
 			</div>
 		</div>
 	</div>
+
+	#}
 
 {% endblock %}
