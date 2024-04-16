@@ -31,5 +31,13 @@ class BaseController extends AbstractController
         ]);
     }
 
+    #[Route('/mod-admin', name: 'app_admin')]
+    public function mention(): Response
+    {
+        return $this->render('base/admin.html.twig', [
+
+     ]);
+    }
+
     
 }

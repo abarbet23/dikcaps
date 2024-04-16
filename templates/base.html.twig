@@ -22,14 +22,19 @@
 				<a href="{{path('app_base')}}">
 					<img src="{{asset('img/condom.gif')}}" width="40px">
 				</a>
-				<a class="navbar-brand" href="{{path('app_base')}}">
-					Dikcaps</a>
+				<a class="navbar-brand" href="{{path('app_base')}}">Dikcaps</a>
 				<div class="collapse navbar-collapse" id="navbarColor02" bis_skin_checked="1">
 					<ul class="navbar-nav me-auto">
 						<li class="nav-item">
 							<a class="nav-link" href="{{path('app_produit')}}">Nos produit</a>
 						</li>
+						{% if is_granted ('ROLE_ADMIN') %}
+							<li class="nav-item">
+								<a class="nav-link" href="{{path('app_admin')}}">Admin <i class="bi bi-person-fill"></i></a>
+							</li>
+						{% endif %}
 					</ul>
+
 
 					<ul class="navbar-nav">
 						{% if not is_granted ('IS_AUTHENTICATED_FULLY') %}
@@ -57,7 +62,9 @@
 					</ul>
 				</div>
 			</div>
+
 		</nav>
+
 
 		<!-- message bouton panier -->
 		<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
