@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\CapoteRepository;
 use App\Repository\TailleRepository;
+use App\Repository\UserRepository; 
+use App\Entity\User;
 
 class BaseController extends AbstractController
 {
@@ -32,9 +34,11 @@ class BaseController extends AbstractController
     }
 
     #[Route('/mod-admin', name: 'app_admin')]
-    public function mention(): Response
+    public function lister_user(UserRepository $UserRepository): Response
     {
+        $users = $UserRepository->findAll();
         return $this->render('base/admin.html.twig', [
+            'users'=>$users
 
      ]);
     }
