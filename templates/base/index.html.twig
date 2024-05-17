@@ -5,6 +5,11 @@
  <h2 class="text-center text-dark mb-4 pb-4 display-2 "> Pour éviter la garde alternée ! </h2>
 <br>
 <br>
+{% if not is_granted ('IS_AUTHENTICATED_FULLY') %}
+						{% else %}
+							<h2 class="text-center text-primary mb-4 pb-2 display-2 "> Heureux de vous revoir </h2>
+              <h3 class="text-center text-dark mb-4 pb-2 display-2 "> {{app.user.email}} </h3>
+						{% endif %}
 <br>
  
  <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">

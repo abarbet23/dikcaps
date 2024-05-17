@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{parent()}}Votre Panier
+{% endblock %}
+
+{% block body %}
+	<h6 class="text-center text-danger mt-4 pt-4 display-1 fw-bold">
+		Panier
+	</h6>
+	<div class="card-group g-4 pt-4">
+		<div class="row row-cols-1 row-cols-sm-3 row-cols-md-4 g-4">
+			{% for i in panier%}
+				<div class="col" style="border-radius: 25%;">
+					<div class="card pb-4 bg-secondary" style="text-align: center;">
+						<div class="card-body">
+							<h5 class="card-header text-center text-dark">{{i.capote.nom}}</h5>
+							{% if i.capote.image | length > 0 %}
+								{% set chemin = 'img/' ~ i.capote.image %}
+								<a href="{{path('app_produit',{'id':i.capote.id})}}">
+									<img src="{{asset(chemin)}}" class="card-img-top">
+								</a>
+							{% endif %}
+							<p class="card-text text-dark">{{i.capote.description}}</p>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}

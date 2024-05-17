@@ -21,9 +21,13 @@ class Panier
     #[ORM\OneToMany(targetEntity: Inserer::class, mappedBy: 'panier', orphanRemoval: true)]
     private Collection $inserers;
 
+    #[ORM\OneToMany(targetEntity: Ajouter::class, mappedBy: 'panier')]
+    private Collection $ajouters;
+
     public function __construct()
     {
         $this->inserers = new ArrayCollection();
+        $this->ajouters = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -77,6 +81,36 @@ class Panier
             // set the owning side to null (unless already changed)
             if ($inserer->getPanier() === $this) {
                 $inserer->setPanier(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Ajouter>
+     */
+    public function getAjouters(): Collection
+    {
+        return $this->ajouters;
+    }
+
+    public function addAjouter(Ajouter $ajouter): static
+    {
+        if (!$this->ajouters->contains($ajouter)) {
+            $this->ajouters->add($ajouter);
+            $ajouter->setPanier($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAjouter(Ajouter $ajouter): static
+    {
+        if ($this->ajouters->removeElement($ajouter)) {
+            // set the owning side to null (unless already changed)
+            if ($ajouter->getPanier() === $this) {
+                $ajouter->setPanier(null);
             }
         }
 

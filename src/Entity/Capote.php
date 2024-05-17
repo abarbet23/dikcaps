@@ -28,9 +28,13 @@ class Capote
     #[ORM\Column(length: 255)]
     private ?string $image = null;
 
+    #[ORM\OneToMany(targetEntity: Ajouter::class, mappedBy: 'capote')]
+    private Collection $ajouters;
+
     public function __construct()
     {
         $this->associers = new ArrayCollection();
+        $this->ajouters = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -100,6 +104,36 @@ class Capote
     public function setImage(string $image): static
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Ajouter>
+     */
+    public function getAjouters(): Collection
+    {
+        return $this->ajouters;
+    }
+
+    public function addAjouter(Ajouter $ajouter): static
+    {
+        if (!$this->ajouters->contains($ajouter)) {
+            $this->ajouters->add($ajouter);
+            $ajouter->setCapote($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAjouter(Ajouter $ajouter): static
+    {
+        if ($this->ajouters->removeElement($ajouter)) {
+            // set the owning side to null (unless already changed)
+            if ($ajouter->getCapote() === $this) {
+                $ajouter->setCapote(null);
+            }
+        }
 
         return $this;
     }
